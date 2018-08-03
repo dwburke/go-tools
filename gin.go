@@ -22,5 +22,12 @@ func AllGinParams(c *gin.Context) gin.Params {
 		params = append(params, gin.Param{Key: k, Value: v[0]})
 	}
 
+	for k, v := range req.URL.Query() {
+		if len(v) == 0 {
+			continue
+		}
+		params = append(params, gin.Param{Key: k, Value: v[0]})
+	}
+
 	return params
 }
