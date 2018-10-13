@@ -10,6 +10,16 @@ type Ssh struct {
 	Client *simplessh.Client
 }
 
+type Args struct {
+	Username string
+	Keyfile  string
+	Server   string
+}
+
+func StrRun(args Args, cmd string) (string, error) {
+	return Run(args.Username, args.Keyfile, args.Server, cmd)
+}
+
 // good for one-and-done command on a server (or if you have to iterate a lot of servers)
 func Run(username string, keyfile string, server string, cmd string) (string, error) {
 	var client *simplessh.Client
