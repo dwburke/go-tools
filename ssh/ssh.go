@@ -1,4 +1,4 @@
-package toolsSsh
+package tssh
 
 import (
 	"github.com/dwburke/go-tools"
