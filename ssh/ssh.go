@@ -3,6 +3,7 @@ package toolsSsh
 import (
 	"github.com/dwburke/go-tools"
 	"github.com/sfreiberg/simplessh"
+	"os/user"
 )
 
 type Ssh struct {
@@ -16,6 +17,15 @@ func Run(username string, keyfile string, server string, cmd string) (string, er
 
 	if len(keyfile) == 0 {
 		keyfile = tools.HomeDir() + "/.ssh/id_rsa"
+	}
+
+	if len(username) == 0 {
+		usr, err := user.Current()
+		if err != nil {
+			return "", err
+		}
+
+		username = usr.Username
 	}
 
 	if client, err = simplessh.ConnectWithKeyFile(server, "addict", keyfile); err != nil {
@@ -38,6 +48,15 @@ func New(username string, server string, keyfile string) (*Ssh, error) {
 
 	if len(keyfile) == 0 {
 		keyfile = tools.HomeDir() + "/.ssh/id_rsa"
+	}
+
+	if len(username) == 0 {
+		usr, err := user.Current()
+		if err != nil {
+			return nil, err
+		}
+
+		username = usr.Username
 	}
 
 	ssh := Ssh{}
