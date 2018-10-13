@@ -4,7 +4,12 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"strings"
 )
+
+func Chomp(line *string) {
+	*line = strings.TrimRight(*line, "\r\n")
+}
 
 func FatalError(err error) {
 	if err != nil {
