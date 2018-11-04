@@ -38,7 +38,7 @@ func Run(username string, keyfile string, server string, cmd string) (string, er
 		username = usr.Username
 	}
 
-	if client, err = simplessh.ConnectWithKeyFile(server, "addict", keyfile); err != nil {
+	if client, err = simplessh.ConnectWithKeyFile(server, username, keyfile); err != nil {
 		return "", err
 	}
 	defer client.Close()
