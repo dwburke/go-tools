@@ -7,6 +7,9 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Merge all config files in directory.
+// This will fail if invalid config files are in the directory.
+// err := ReadDir("configs/")
 func ReadDir(directory string) error {
 
 	config_files, err := ioutil.ReadDir(directory)

@@ -7,6 +7,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Merge configs for all files of pattern
+// err := ReadPattern("configs/*.yml")
 func ReadPattern(pattern string) error {
 	matches, err := filepath.Glob(pattern)
 	if err != nil {
